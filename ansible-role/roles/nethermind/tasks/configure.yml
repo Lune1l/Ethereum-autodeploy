@@ -1,4 +1,10 @@
 ---
+  - name: Create directory for data
+    file:
+      path: "/mnt/block-volume/ethereum/data"
+      state: directory
+      mode: '0755'
+
   - name: Create systemd service file for Nethermind
     template:
       src: nethermind_service.j2

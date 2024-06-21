@@ -4,10 +4,11 @@ After=network-online.target
 
 [Service]
 User=osmosis
-ExecStart={{ nethermind_path }}/run-mainnet-beacon-node.sh \
+ExecStart={{ nethermind_path }}/nethermind \
   --web3-url={{ nimbus_url }} \
   --jwt-secret=/mnt/block-volume/ethereum/config/jwt.hex \
-  --JsonRpc.Enabled=true
+  --JsonRpc.Enabled=true \
+  -dd /mnt/block-volume/ethereum/data
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
