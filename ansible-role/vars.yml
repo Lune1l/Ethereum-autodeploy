@@ -1,0 +1,4 @@
+---
+node_user_name: ethereum
+nimbus_url: http://127.0.0.1:8551
+nethermind_url: http://127.0.0.1:5052

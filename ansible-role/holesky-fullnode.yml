@@ -1,0 +1,34 @@
+---
+- hosts: all
+  roles:
+  - roles/node_exporter
+  - roles/system_setup
+  - name: Deploy holesky full node setup
+    hosts: localhost
+    gather_facts: false
+    tasks:
+      - name: Run generate_jwt role to generate and fetch the JWT token
+        include_role:
+          name: generate_jwt
+
+  - name: Deploy Nethermind to machine A and Nimbus to machine B
+    hosts: all
+    become: true
+    tasks:
+      - name: Copy JWT to target machine
+        copy:
+          src: files/jwt.hex
+          dest: /mnt/block-volume/ethereum/config/jwt.hex
+        delegate_to: "{{ inventory_hostname }}"
+
+  - name: Configure Nethermind on machine A
+    hosts: machine_a
+    become: true
+    roles:
+      - nethermind
+
+  - name: Configure Nimbus on machine B
+    hosts: machine_b
+    become: true
+    roles:
+      - nimbus

@@ -1,0 +1,17 @@
+---
+- name: Ensure the config directory exists
+  file:
+    path: /mnt/block-volume/ethereum/config
+    state: directory
+    mode: '0755'
+
+- name: Generate JWT hex key
+  command: openssl rand -hex 32 > /mnt/block-volume/ethereum/config/jwt.hex
+  args:
+    creates: /mnt/block-volume/ethereum/config/jwt.hex
+
+- name: Copy JWT to control node
+  fetch:
+    src: /mnt/block-volume/ethereum/config/jwt.hex
+    dest: files/jwt.hex
+    flat: yes
