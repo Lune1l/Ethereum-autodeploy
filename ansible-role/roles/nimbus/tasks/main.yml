@@ -1,0 +1,6 @@
+---
+- name: Fetch Nimbus binary
+  include_tasks: fetch_nimbus.yml
+
+- name: Configure Nimbus
+  include_tasks: configure.yml
