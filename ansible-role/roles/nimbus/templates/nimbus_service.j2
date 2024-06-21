@@ -7,7 +7,8 @@ User=osmosis
 ExecStart={{ nimbus_path }}/build/nimbus_beacon_node trustedNodeSync \
   --network:holesky \
   --data-dir=build/data/shared_holesky_0 \
-  --trusted-node-url={{ nethermind_url }}
+  --trusted-node-url={{ nethermind_url }} \
+  --data-dir=/mnt/block-volume/ethereum/data
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096

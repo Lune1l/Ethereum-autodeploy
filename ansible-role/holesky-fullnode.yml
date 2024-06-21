@@ -5,7 +5,6 @@
   roles:
     - role: node_exporter
     - role: system_setup
-
 - name: Generate JWT token
   hosts: localhost
   gather_facts: false
@@ -13,7 +12,6 @@
     - name: Run generate_jwt role to generate and fetch the JWT token
       include_role:
         name: generate_jwt
-
 - name: Distribute JWT to both machines
   hosts: all
   become: true
@@ -28,15 +26,13 @@
       copy:
         src: files/jwt.hex
         dest: /mnt/block-volume/ethereum/config/jwt.hex
-
-- name: Configure Nimbus on machine A
-  hosts: machine_a
+- name: Configure Nimbus on machine for nimbus
+  hosts: eth_holeksky_nimbus
   become: true
   roles:
     - nimbus
-
-- name: Configure Nethermind on machine B
-  hosts: machine_b
+- name: Configure Nethermind on machine for nethermind
+  hosts: eth_holesky_nethermind
   become: true
   roles:
     - nethermind

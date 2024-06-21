@@ -4,7 +4,6 @@
       path: "/mnt/block-volume/ethereum/data"
       state: directory
       mode: '0755'
-
   - name: Create systemd service file for Nethermind
     template:
       src: nethermind_service.j2
@@ -12,10 +11,8 @@
       mode: '0644'
     vars:
       nethermind_path: "/mnt/block-volume/ethereum/.bin/nethermind/{{ release_info.json.tag_name }}"
-
   - name: Reload systemd daemon
     command: systemctl daemon-reload
-
   - name: Enable and start Nethermind service
     systemd:
       name: nethermind

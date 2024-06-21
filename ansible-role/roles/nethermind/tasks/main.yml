@@ -1,6 +1,5 @@
 ---
 - name: Fetch Nethermind binary
   include_tasks: fetch_nethermind.yml
-
 - name: Configure Nethermind
   include_tasks: configure.yml
