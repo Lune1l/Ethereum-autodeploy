@@ -1,10 +1,17 @@
 ---
-  - name: Generate JWT hex key
-    command: openssl rand -hex 32 > /tmp/jwt.hex
-    args:
-      creates: /tmp/jwt.hex
-  - name: Copy JWT to control node
-    fetch:
-      src: /tmp/jwt.hex
-      dest: files/jwt.hex
-      flat: yes
+- name: Generate JWT hex key
+  command: openssl rand -hex 32
+  register: jwt_key_output
+- name: Write JWT hex key to file
+  copy:
+    content: "{{ jwt_key_output.stdout }}"
+    dest: /tmp/jwt.hex
+    force: yes
+    creates: /tmp/jwt.hex
+- name: Copy JWT to control node
+  fetch:
+    src: /tmp/jwt.hex
+    dest: files/jwt.hex
+    flat: yes
+    creates: /tmp/jwt.hex
+
