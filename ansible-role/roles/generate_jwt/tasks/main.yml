@@ -1,5 +1,4 @@
 ---
-  become: true
   - name: Generate JWT hex key
     command: openssl rand -hex 32 > /tmp/jwt.hex
     args:
