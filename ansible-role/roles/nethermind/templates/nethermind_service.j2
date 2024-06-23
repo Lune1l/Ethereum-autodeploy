@@ -5,11 +5,11 @@ After=network-online.target
 [Service]
 User={{ node_user_name }}
 ExecStart={{ nethermind_path }}/nethermind \
+  --datadir=/mnt/block-volume/ethereum/data \
+  --config=holeskyd \
   --web3-url={{ nimbus_url }} \
   --jwt-secret=/mnt/block-volume/ethereum/config/jwt.hex \
-  --JsonRpc.Enabled=true \
-  -dd=/mnt/block-volume/ethereum/data \
-  -c=holesky
+  --JsonRpc.Enabled=true
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
