@@ -23,8 +23,8 @@
 - name: Set download directory
   set_fact:
     version: "{{ release_info.json.tag_name }}"
-    download_path: "/mnt/block-volume/ethereum/.bin/nethermind/{{ release_info.json.tag_name }}/nethermind-{{ release_info.json.tag_name }}-linux-amd64.zip"
-    dest_folder: "/mnt/block-volume/ethereum/.bin/nethermind/{{ release_info.json.tag_name }}"
+    download_path: "/mnt/block-volume/ethereum/.bin/{{ release_info.json.tag_name }}/nethermind-{{ release_info.json.tag_name }}-linux-amd64.zip"
+    dest_folder: "/mnt/block-volume/ethereum/.bin/{{ release_info.json.tag_name }}/"
 - name: Create directory for version
   file:
     path: "{{ dest_folder }}"
