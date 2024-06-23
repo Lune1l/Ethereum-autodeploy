@@ -1,7 +1,7 @@
 ---
 - name: Create directory for data
   file:
-    path: "/mnt/block-volume/ethereum/data"
+    path: "/mnt/block-volume/{{ node_user_name }}/data"
     state: directory
     mode: '0755'
 - name: Change ownership of block volume
@@ -17,7 +17,7 @@
     dest: /etc/systemd/system/nethermind.service
     mode: '0644'
   vars:
-    nethermind_path: "/mnt/block-volume/ethereum/.bin/nethermind/{{ release_info.json.tag_name }}"
+    nethermind_path: "/mnt/block-volume/{{ node_user_name }}/.bin/{{ release_info.json.tag_name }}"
 - name: Reload systemd daemon
   command: systemctl daemon-reload
 - name: Enable and start Nethermind service
