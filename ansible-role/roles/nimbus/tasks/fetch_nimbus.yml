@@ -33,18 +33,4 @@
     src: "{{ download_path }}"
     dest: "{{ dest_folder }}"
     remote_src: yes
-  register: unarchive_result
   when: not binary_stat.stat.exists
-- name: List contents of the destination folder
-  find:
-    paths: "{{ dest_folder }}"
-    file_type: directory
-    depth: 1
-  register: folder_contents
-  when: unarchive_result.changed
-- name: Set extracted folder name
-  set_fact:
-    extracted_folder_name: "{{ item.path | basename }}"
-  with_items: "{{ folder_contents.files }}"
-  when: "'{{ dest_folder }}/{{ item.path | basename }}' != '{{ dest_folder }}'"
-  when: unarchive_result.changed
