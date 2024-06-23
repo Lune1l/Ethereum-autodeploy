@@ -22,7 +22,6 @@
   set_fact:
     extracted_folder_name: "{{ item.path | basename }}"
   with_items: "{{ folder_contents.files }}"
-  when: "'{{ dest_folder }}/{{ item.path | basename }}' != '{{ dest_folder }}'"
 
 - name: Create systemd service file for Nimbus
   template:
