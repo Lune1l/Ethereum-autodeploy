@@ -1,11 +1,11 @@
 ---
+  become: true
   - name: Generate JWT hex key
-    command: openssl rand -hex 32 > /mnt/block-volume/ethereum/config/jwt.hex
+    command: openssl rand -hex 32 > /tmp/jwt.hex
     args:
-      creates: /mnt/block-volume/ethereum/config/jwt.hex
-
+      creates: /tmp/jwt.hex
   - name: Copy JWT to control node
     fetch:
-      src: /mnt/block-volume/ethereum/config/jwt.hex
+      src: /tmp/jwt.hex
       dest: files/jwt.hex
       flat: yes

@@ -37,11 +37,6 @@
   args:
     creates: "/mnt/block-volume/{{ node_user_name }}"
   become: true
-- name: Move existing files from old home to the new one
-  command: >
-    mv /home/ethereum/ /mnt/block-volume/{{ node_user_name }}/
-  ignore_errors: yes
-  become: true
 - name: Delete old home
   file:
     path: "/home/{{ node_user_name }}"
@@ -50,7 +45,7 @@
   become: true
 - name: Create .bin directory under home
   file:
-    path: /mnt/block-volume/.bin
+    path: /mnt/block-volume/{{ node_user_name }}/.bin
     state: directory
     mode: '0755'
   become: true

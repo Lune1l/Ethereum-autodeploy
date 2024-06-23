@@ -23,7 +23,6 @@
         path: /mnt/block-volume/ethereum/config
         state: directory
         mode: '0755'
-
     - name: Copy JWT to target machine
       copy:
         src: files/jwt.hex
