@@ -3,7 +3,7 @@ Description=Nethermind daemon
 After=network-online.target
 
 [Service]
-User=osmosis
+User={{ node_user_name }}
 ExecStart={{ nethermind_path }}/nethermind \
   --web3-url={{ nimbus_url }} \
   --jwt-secret=/mnt/block-volume/ethereum/config/jwt.hex \

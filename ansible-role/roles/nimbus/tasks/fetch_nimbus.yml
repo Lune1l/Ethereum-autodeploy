@@ -1,7 +1,7 @@
 ---
 - name: Create nimbus bin directory
   file:
-    path: /mnt/block-volume/ethereum/.bin/nimbus
+    path: /mnt/block-volume/{{ node_user_name }}/.bin/nimbus
     state: directory
     mode: '0755'
 
@@ -20,8 +20,8 @@
 - name: Set download directory
   set_fact:
     version: "{{ release_info.json.tag_name }}"
-    download_path: "/mnt/block-volume/ethereum/.bin/nimbus/{{ release_info.json.tag_name }}/nimbus-eth2-{{ release_info.json.tag_name }}-linux-amd64.tar.gz"
-    dest_folder: "/mnt/block-volume/ethereum/.bin/nimbus/{{ release_info.json.tag_name }}"
+    download_path: "/mnt/block-volume/{{ node_user_name }}/.bin/{{ release_info.json.tag_name }}/nimbus-eth2-{{ release_info.json.tag_name }}-linux-amd64.tar.gz"
+    dest_folder: "/mnt/block-volume/{{ node_user_name }}/.bin/{{ release_info.json.tag_name }}/"
 
 - name: Create directory for version
   file:
