@@ -4,6 +4,13 @@
     path: "/mnt/block-volume/ethereum/data"
     state: directory
     mode: '0755'
+- name: Change ownership of block volume
+  become: yes
+  file:
+    path: "/mnt/block-volume/{{ node_user_name }}"
+    owner: "{{ node_user_name }}"
+    group: "{{ node_user_name }}"
+    recurse: yes
 - name: Create systemd service file for Nethermind
   template:
     src: nethermind_service.j2

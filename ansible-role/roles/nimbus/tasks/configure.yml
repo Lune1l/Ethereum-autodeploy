@@ -1,9 +1,16 @@
 ---   
 - name: Create directory for data
   file:
-    path: "/mnt/block-volume/ethereum/data"
+    path: "/mnt/block-volume/{{ node_user_name }}/data"
     state: directory
     mode: '0755'
+- name: Change ownership of block volume
+  become: yes
+  file:
+    path: "/mnt/block-volume/{{ node_user_name }}"
+    owner: "{{ node_user_name }}"
+    group: "{{ node_user_name }}"
+    recurse: yes
 - name: Create systemd service file for Nimbus
   template:
     src: nimbus_service.j2
