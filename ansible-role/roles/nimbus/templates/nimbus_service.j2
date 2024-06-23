@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 User={{ node_user_name }}
-ExecStart={{ nimbus_path }}build/nimbus_beacon_node trustedNodeSync \
+ExecStart={{ nimbus_path }}/{{ extracted_folder_name }}/build/nimbus_beacon_node trustedNodeSync \
   --network:holesky \
   --data-dir=build/data/shared_holesky_0 \
   --trusted-node-url={{ nethermind_url }} \
