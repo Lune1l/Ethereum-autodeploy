@@ -2,6 +2,8 @@
 - name: Deploy node exporter and system setup on both machines
   hosts: all
   become: true
+  vars_files:
+    - vars.yml
   roles:
     - role: node_exporter
     - role: system_setup
@@ -29,11 +31,15 @@
 - name: Configure Nimbus on machine for nimbus
   hosts: eth_holeksky_nimbus
   become: true
+  vars_files:
+    - vars.yml
   roles:
     - nimbus
 - name: Configure Nethermind on machine for nethermind
   hosts: eth_holesky_nethermind
   become: true
+  vars_files:
+    - vars.yml
   roles:
     - nethermind
 
