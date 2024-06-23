@@ -42,7 +42,7 @@
     depth: 1
   register: folder_contents
   when: unarchive_result.changed
-  - name: Set extracted folder name
+- name: Set extracted folder name
   set_fact:
     extracted_folder_name: "{{ item.path | basename }}"
   with_items: "{{ folder_contents.files }}"
