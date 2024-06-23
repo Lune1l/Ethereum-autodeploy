@@ -49,3 +49,7 @@
     state: directory
     mode: '0755'
   become: true
+- name: Install unzip to handle zip
+  ansible.builtin.apt:
+    name: unzip
+    state: present
