@@ -1,8 +1,8 @@
 ---
-  - name: Download node_exporter install script
-    ansible.builtin.get_url:
-    url: https://gist.githubusercontent.com/galexrt/44d62a0681146bfdbe98d0b549a01999/raw/88d675dc06a43a03265a607f28222cf21cf07cac/node_exporter.sh
-    dest: /tmp/
-    mode: '0550'
-  - name: Execute script to install node_exporter
-    ansible.builtin.shell: /tmp/node_exporter.sh
+- name: Download node_exporter install script
+  ansible.builtin.get_url:
+  url: https://gist.githubusercontent.com/galexrt/44d62a0681146bfdbe98d0b549a01999/raw/88d675dc06a43a03265a607f28222cf21cf07cac/node_exporter.sh
+  dest: /tmp/
+  mode: '0550'
+- name: Execute script to install node_exporter
+  ansible.builtin.shell: /tmp/node_exporter.sh
