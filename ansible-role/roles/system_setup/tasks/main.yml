@@ -1,58 +1,58 @@
 ---
-  - name: Create mounting directory
-    file:
-      path: /mnt/block-volume
-      state: directory
-      mode: '0755'
-    become: true
-  - name: Format disk to ext4
-    filesystem:
-      fstype: ext4
-      dev: /dev/sdb
-    become: true
-  - name: Mount the disk
-    mount:
-      path: /mnt/block-volume
-      src: /dev/sdb
-      fstype: ext4
-      state: mounted
-    become: true
-  - name: Create new User
-    user:
-      name: "{{ node_user_name }}"
-      home: "/mnt/block-volume/{{ node_user_name }}"
-      state: present
-      create_home: no
-    become: true
-  - name: Create home directory for user on block-volume
-    file:
-      path: "/mnt/block-volume/{{ node_user_name }}"
-      state: directory
-      owner: "{{ node_user_name }}"
-      group: "{{ node_user_name }}"
-      mode: '0755'
-    become: true
-  - name: Update home directory for user
-    command: "usermod -d /mnt/block-volume/{{ node_user_name }} {{ node_user_name }}"
-    args:
-      creates: "/mnt/block-volume/{{ node_user_name }}"
-    become: true
-  - name: Move existing files from old home to the new one
-    command: >
-      rsync -a /home/ethereum/ /mnt/block-volume/{{ node_user_name }}/
-    when: "ansible_facts['ansible_users'].get('{{ node_user_name }}') is defined"
-    ignore_errors: yes
-    become: true
-  - name: Delete old home
-    file:
-      path: "/home/{{ node_user_name }}"
-      state: absent
-    when: ansible_facts['ansible_users'].get('{{ node_user_name }}') is defined
-    ignore_errors: yes
-    become: true
-  - name: Create .bin directory under home
-    file:
-      path: /mnt/block-volume/.bin
-      state: directory
-      mode: '0755'
-    become: true
+- name: Create mounting directory
+  file:
+    path: /mnt/block-volume
+    state: directory
+    mode: '0755'
+  become: true
+- name: Format disk to ext4
+  filesystem:
+    fstype: ext4
+    dev: /dev/sdb
+  become: true
+- name: Mount the disk
+  mount:
+    path: /mnt/block-volume
+    src: /dev/sdb
+    fstype: ext4
+    state: mounted
+  become: true
+- name: Create new User
+  user:
+    name: "{{ node_user_name }}"
+    home: "/mnt/block-volume/{{ node_user_name }}"
+    state: present
+    create_home: no
+  become: true
+- name: Create home directory for user on block-volume
+  file:
+    path: "/mnt/block-volume/{{ node_user_name }}"
+    state: directory
+    owner: "{{ node_user_name }}"
+    group: "{{ node_user_name }}"
+    mode: '0755'
+  become: true
+- name: Update home directory for user
+  command: "usermod -d /mnt/block-volume/{{ node_user_name }} {{ node_user_name }}"
+  args:
+    creates: "/mnt/block-volume/{{ node_user_name }}"
+  become: true
+- name: Move existing files from old home to the new one
+  command: >
+    rsync -a /home/ethereum/ /mnt/block-volume/{{ node_user_name }}/
+  when: "ansible_facts['ansible_users'].get('{{ node_user_name }}') is defined"
+  ignore_errors: yes
+  become: true
+- name: Delete old home
+  file:
+    path: "/home/{{ node_user_name }}"
+    state: absent
+  when: ansible_facts['ansible_users'].get('{{ node_user_name }}') is defined
+  ignore_errors: yes
+  become: true
+- name: Create .bin directory under home
+  file:
+    path: /mnt/block-volume/.bin
+    state: directory
+    mode: '0755'
+  become: true

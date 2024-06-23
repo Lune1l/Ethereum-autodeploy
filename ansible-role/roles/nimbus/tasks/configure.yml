@@ -1,21 +1,21 @@
 ---   
-  - name: Create directory for data
-    file:
-      path: "/mnt/block-volume/ethereum/data"
-      state: directory
-      mode: '0755'
-  - name: Create systemd service file for Nimbus
-    template:
-      src: nimbus_service.j2
-      dest: /etc/systemd/system/nimbus.service
-      mode: '0644'
-    vars:
-      nimbus_path: "{{ dest_folder }}"
-  - name: Reload systemd daemon
-    command: systemctl daemon-reload
+- name: Create directory for data
+  file:
+    path: "/mnt/block-volume/ethereum/data"
+    state: directory
+    mode: '0755'
+- name: Create systemd service file for Nimbus
+  template:
+    src: nimbus_service.j2
+    dest: /etc/systemd/system/nimbus.service
+    mode: '0644'
+  vars:
+    nimbus_path: "{{ dest_folder }}"
+- name: Reload systemd daemon
+  command: systemctl daemon-reload
 
-  - name: Enable and start Nimbus service
-    systemd:
-      name: nimbus
-      enabled: yes
-      state: started
+- name: Enable and start Nimbus service
+  systemd:
+    name: nimbus
+    enabled: yes
+    state: started
