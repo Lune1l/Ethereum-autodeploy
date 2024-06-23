@@ -16,7 +16,7 @@
   when: "'linux-x64' in item.name"
 - name: Set the first matching download URL as a fact
   set_fact:
-    final_download_url: "{{ download_url | first }}"
+    final_download_url: "{{ download_url }}"
   when: download_url is defined and download_url | length > 0
 - debug:
     msg: "The download URL is {{ final_download_url }}"
