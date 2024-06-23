@@ -1,10 +1,4 @@
 ---
-- name: Create nimbus bin directory
-  file:
-    path: /mnt/block-volume/{{ node_user_name }}/.bin/nimbus
-    state: directory
-    mode: '0755'
-
 - name: Get info on the latest release
   uri:
     url: https://api.github.com/repos/status-im/nimbus-eth2/releases/latest

@@ -1,9 +1,4 @@
 ---
-- name: Create nethermind bin directory
-  file:
-    path: /mnt/block-volume/{{ node_user_name }}/.bin/nethermind
-    state: directory
-    mode: '0755'
 - name: Get infos on the latest release
   uri:
     url: https://api.github.com/repos/NethermindEth/nethermind/releases/latest
