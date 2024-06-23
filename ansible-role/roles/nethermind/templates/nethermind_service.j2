@@ -5,10 +5,10 @@ After=network-online.target
 [Service]
 User={{ node_user_name }}
 ExecStart={{ nethermind_path }}/nethermind \
-  --datadir=/mnt/block-volume/ethereum/data \
-  --config=holeskyd \
+  --datadir=/mnt/block-volume/{{ node_user_name }}/data \
+  --config={{ network }} \
   --web3-url={{ nimbus_url }} \
-  --jwt-secret=/mnt/block-volume/ethereum/config/jwt.hex \
+  --jwt-secret=/mnt/block-volume/{{ node_user_name }}/config/jwt.hex \
   --JsonRpc.Enabled=true
 Restart=on-failure
 RestartSec=3
