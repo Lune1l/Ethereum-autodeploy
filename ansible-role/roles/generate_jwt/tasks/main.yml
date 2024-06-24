@@ -12,4 +12,7 @@
     src: /tmp/jwt.hex
     dest: files/jwt.hex
     flat: yes
-
+- name: Remove jwt.hex for security purposes once used
+  ansible.builtin.file:
+    path: /tmp/jwt.hex
+    state: absent
