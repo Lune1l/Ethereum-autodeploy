@@ -1,16 +1,4 @@
 ---   
-- name: Set kern.maxfiles
-  sysctl:
-    name: kern.maxfiles
-    value: 200000
-    state: present
-    reload: yes
-- name: Set kern.maxfilesperproc
-  sysctl:
-    name: kern.maxfilesperproc
-    value: 200000
-    state: present
-    reload: yes
 - name: Create directory for data
   file:
     path: "/mnt/block-volume/{{ node_user_name }}/data"

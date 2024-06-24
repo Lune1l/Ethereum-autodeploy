@@ -11,7 +11,7 @@ ExecStart={{ nimbus_path }}/{{ nimbus_folder_name }}/build/nimbus_beacon_node tr
   --data-dir=/mnt/block-volume/ethereum/data
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=10000
 
 [Install]
 WantedBy=multi-user.target
