@@ -1,4 +1,10 @@
 ---
+- name: Change system limits for nethermind
+  ansible.builtin.copy:
+    dest: /etc/security/limits.d/nethermind.conf
+    content: |
+      nethermind soft nofile 100000
+      nethermind hard nofile 100000
 - name: Create directory for data
   file:
     path: "/mnt/block-volume/{{ node_user_name }}/data"

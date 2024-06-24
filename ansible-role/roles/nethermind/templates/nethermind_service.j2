@@ -12,7 +12,7 @@ ExecStart={{ nethermind_path }}/nethermind \
   --JsonRpc.Enabled=true
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=1000000
 
 [Install]
 WantedBy=multi-user.target

@@ -3,7 +3,7 @@
   file:
     path: "/mnt/block-volume/{{ node_user_name }}/data"
     state: directory
-    mode: '0755'
+    mode: '0700'
 - name: Change ownership of block volume
   become: yes
   file:
