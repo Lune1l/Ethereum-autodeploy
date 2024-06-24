@@ -65,7 +65,7 @@ It use several roles :
 ## Terraform
 
 The terraform config file has not been tested.
-It should setup two hosts with same specs and two disks according the the setup described above. 
+It should nevertheless setup two hosts with same specs and two disks according the the setup described above. 
 
 ## Get started
 
@@ -84,6 +84,12 @@ At root of the project run
 ```
 ansible-playbook -i hosts.ini ansible-role/ethereum-fullnode.yml
 ```
+
+## Upgrading the nodes
+
+If Nethermind or Nimbus team have released a new version tagged as latest, you can upgrade the nodes by runnnig the playbook again. It will automatically detect the release, download the bin into a new directory, update the service file and restart everything.
+
+Note : For security concerns, it will also renew the jwt.hex token.
 
 ## Post-scriptum
 
