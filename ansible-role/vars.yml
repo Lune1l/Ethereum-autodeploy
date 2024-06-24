@@ -1,5 +1,4 @@
 ---
 node_user_name: ethereum
-nimbus_url: http://192.168.88.32:8551
-nethermind_url: http://192.168.88.31:5052
+nethermind_url: http://192.168.88.31:8551
 network: holesky
