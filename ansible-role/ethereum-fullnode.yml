@@ -28,14 +28,14 @@
         src: files/jwt.hex
         dest: /mnt/block-volume/ethereum/config/jwt.hex
 - name: Configure Nimbus on machine for nimbus
-  hosts: eth_holesky_nimbus
+  hosts: eth_nimbus
   become: true
   vars_files:
     - vars.yml
   roles:
     - nimbus
 - name: Configure Nethermind on machine for nethermind
-  hosts: eth_holesky_nethermind
+  hosts: eth_nethermind
   become: true
   vars_files:
     - vars.yml
