@@ -80,7 +80,10 @@ Please edit the `vars.yml` file according to your need :
 - by default, the playbook will setup the nodes for holesky.
 - please set the nethermind rpc url according to your nethermind's host ip address.
 4. Run the playbook
-At root of the project run ```ansible-playbook -i hosts.ini ansible-role/ethereum-fullnode.yml```
+At root of the project run
+```
+ansible-playbook -i hosts.ini ansible-role/ethereum-fullnode.yml
+```
 
 ## Post-scriptum
 
