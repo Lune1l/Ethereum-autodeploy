@@ -62,6 +62,19 @@ It use several roles :
 - nimbus : Get the latest binary, configure the user home and setup the nimbus service.
 - nethermind : Get the latest binary, configure the user home and setup the nethermind service.
 
+The final file scheme for hosts will be :
+```
+└── /mnt/block-volume/
+    └── {{ node_user_name }} <- e.g ethereum (home of the user)/
+        ├── .bin/
+        │   └── vX.X.X <- version tag (e.g v1.1.0)/
+        │       ├── binary_vX.X.X.zip
+        │       └── "release files"
+        ├── data <- data home for nodes
+        └── config/
+            └── jwt.hex
+```
+
 ## Terraform
 
 The terraform config file has not been tested.
